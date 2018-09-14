@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    /*background-image: url(../src/images/solitaire-background.png);*/
+    background-image: url(../src/assets/images/Cudi.jpg);
+    background-position: center;
+    height: 100%;
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+.baseCard{
+    width: 100px;
+    height: 132px;
+    border: 1.5px solid #000000;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+    position:relative;
+}
+
+img{
+    max-width: 100%;
+    width: 100px;
+    height: 132px;
+    position: absolute;
+}

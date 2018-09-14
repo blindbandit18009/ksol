@@ -1,0 +1,35 @@
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white;
+} 
+
+app-talon-waste{
+    float: left;
+    width: 50%;
+}
+
+app-foundation{
+    width: 40%;
+    display: inline-block;
+}
+
+app-maneuver{
+    width: 100%;
+    display: inline-block;
+    margin-top: 0.5%;
+}
+
+.upperCards{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    margin-top: 0.5%;
+}
+
+.lowerCards{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    margin-top: 1%;
+}

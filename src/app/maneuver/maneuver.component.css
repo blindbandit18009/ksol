@@ -1,0 +1,13 @@
+.maneuver{
+    position: static;
+    float: left;
+    margin-left: 3.5%;
+}
+
+#maneuver1{
+    margin-left: 10%;
+}
+
+img{
+    margin-top: 0px;
+}
