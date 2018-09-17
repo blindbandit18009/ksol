@@ -5,43 +5,61 @@ import { talonCardss, wasteCardss, maneuverCardss, foundationCardss } from './ca
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class CardMoveService {
 
   constructor() { }
 
+  
+
   cardDragged;
   cardDraggedCol;
-  cardDraggedRow;
+  componentFrom;
+ 
 
-
-  setDragCard(ev, card, cardCol, cardRow){
+  setDragCard(ev, card, cardCol, componentFrom){
     this.cardDragged = card;
     this.cardDraggedCol = cardCol;
-    this.cardDraggedRow = cardRow;
-
+    this.componentFrom = componentFrom;
   }
+
+
+
 
 
   dropCard(ev, card, cardCol, cardRow){
-    //let cardDrop = card;
-
     //maneuver to maneuver manipulation
-    let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, card);
-    if(isManeuverForTransfer){
-      this.transferCard(cardCol);
+    if(this.componentFrom == 0){                //cardDragged from maneuver
+      if(card.id == maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].id){
+        let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, card);
+        if(isManeuverForTransfer){
+          this.transferCard(cardCol);
+        }
+      }
     }
-
+    else if(this.componentFrom == 1){         //cardDragged from waste
+      let isWasteForTransfer = this.checkMoveManeuver(this.cardDragged,card);
+      if(isWasteForTransfer){
+        maneuverCardss[cardCol].push(wasteCardss.pop());
+        wasteCardss[wasteCardss.length-1].isDraggable = true;
+      }
+    }
+    
   }
 
 
-  dropManeuverBase(ev, baseCol): void{
-    // console.log("card Dragged:" +this.cardDragged.id);
-    // console.log("card drag col: " +this.cardDraggedCol);
-    // console.log("dropped to maneuver: " +baseCol);
-    // let loc: number;
-    if(this.cardDragged.rank == 'K'){
-      this.transferCard(baseCol);
-    }
+
+
+  dropManeuverBase(ev, baseCol): void{          //pertains to blank maneuvercolumn
+    if(this.componentFrom == 0){                //cardDragged from Maneuver
+      if(maneuverCardss[baseCol].length == 0){
+        if(this.cardDragged.rank == 'K'){
+          this.transferCard(baseCol);
+        }
+      }   
+    }    
   }
 
 
@@ -52,21 +70,17 @@ export class CardMoveService {
     let loc = maneuverCardss[this.cardDraggedCol].indexOf(this.cardDragged);
     lastIndexOfColumn = maneuverCardss[this.cardDraggedCol].length-1;
     
-    // let cardHolder: Card[] = [];
     while((loc+ctr) <= lastIndexOfColumn){
       maneuverCardss[maneuverColumn].push(maneuverCardss[this.cardDraggedCol][loc+ctr]);
       ctr++;
     }
-
     maneuverCardss[this.cardDraggedCol].splice(loc,ctr);
 
     //flipping cards
     if(maneuverCardss[this.cardDraggedCol].length != 0){
       maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isDraggable = true;
+      maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isFaceUp = true;
     }
-
-
-
   }
 
 
@@ -74,7 +88,6 @@ export class CardMoveService {
 
 
   checkMoveManeuver(cardDrag, cardDrop): boolean{ 
-
     if(cardDrag.color != cardDrop.color){
       if((this.getCardValue(cardDrop.rank) - this.getCardValue(cardDrag.rank)) == 1){
         return true;
@@ -103,6 +116,60 @@ export class CardMoveService {
     }
   }
   
+
+
+
+  drawCards(ev){
+    
+    let counter = 0;
+    if(talonCardss.length < 3){
+      while(counter < talonCardss.length){
+        let cardHolder = talonCardss.pop();
+        cardHolder.isFaceUp = true;
+        if(counter+1 == talonCardss.length){
+          cardHolder.isDraggable = true;
+        }
+        wasteCardss.push(cardHolder);
+        counter++;
+      }
+    }
+    else{
+      while(counter < 3){
+        let cardHolder = talonCardss.pop();
+        cardHolder.isFaceUp = true;
+        if(counter+1 == 3){
+          cardHolder.isDraggable = true;
+        }
+        wasteCardss.push(cardHolder);
+        counter++;
+      }
+    }
+  }
+
+  returnToTalon(ev){
+    if(talonCardss.length == 0){
+      while(wasteCardss.length != 0){
+        let cardHolder = wasteCardss.pop();
+        cardHolder.isDraggable = false;
+        cardHolder.isFaceUp = false;
+        talonCardss.push(cardHolder);
+      }
+    }
+    else{
+      this.drawCards(ev);
+    }
+    
+  }
+
+  dropToFoundation(ev, foundationIndex){
+    if(foundationCardss[foundationIndex].length == 0){  //empty foundation
+      if(this.cardDragged.rank = 'A'){
+        
+      }
+
+    }
+  }
+ 
 }
 
 

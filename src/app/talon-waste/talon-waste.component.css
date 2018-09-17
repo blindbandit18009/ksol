@@ -2,6 +2,10 @@
     /* margin-left: 20%; */
     margin-left: 0px;
     float: left;
+    background-image: url(../../assets/images/back.png);
+    background-size: 100%;
+    background-position: center;
+    
     
 }
 

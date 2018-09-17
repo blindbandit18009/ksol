@@ -23,17 +23,14 @@ export class ManeuverComponent implements OnInit {
   }
 
   allowDrop(ev){
-    //console.log("dragover: " +ev.target.id);
     ev.preventDefault();
   }
 
   dropzone(ev, card, cardCol, cardRow){
-    //console.log("drop: " +ev.target.id);
     this.cardMove.dropCard(ev, card, cardCol, cardRow);
   }
 
   dragStart(ev, card, cardCol, cardRow){
-    //console.log("dragStart: " +ev.target.id);
     this.cardMove.setDragCard(ev, card, cardCol, cardRow);
   }
 
@@ -46,7 +43,7 @@ export class ManeuverComponent implements OnInit {
   }
 
   getSource(card:Card){
-    if(card.isDraggable)
+    if(card.isFaceUp)
     {
       return '../src/assets/images/'+card.id+'.png';
     }

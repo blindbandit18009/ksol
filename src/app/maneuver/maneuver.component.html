@@ -6,9 +6,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 0, i)"
+  (dragstart) = "dragStart($event, card, 0, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 0, i)"
   
@@ -23,9 +23,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 1, i)"
+  (dragstart) = "dragStart($event, card, 1, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 1, i)"
   />
@@ -39,9 +39,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 2, i)"
+  (dragstart) = "dragStart($event, card, 2, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 2, i)"
    />
@@ -55,9 +55,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 3, i)"
+  (dragstart) = "dragStart($event, card, 3, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 3, i)"
    />
@@ -71,9 +71,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 4, i)"
+  (dragstart) = "dragStart($event, card, 4, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 4, i)"
    />
@@ -87,9 +87,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 5, i)"
+  (dragstart) = "dragStart($event, card, 5, 0)"
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 5, i)"
    />
@@ -103,9 +103,9 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  draggable=""
+  [draggable]="card.isDraggable"
 
-  (dragstart) = "dragStart($event, card, 6, i)" 
+  (dragstart) = "dragStart($event, card, 6, 0)" 
   (dragover) = "allowDrop($event)"
   (drop) = "dropzone($event, card, 6, i)"
    />

@@ -15,6 +15,7 @@ body{
     box-sizing: border-box;
     background-color: antiquewhite;
     position:relative;
+    
 }
 
 img{
@@ -23,3 +24,4 @@ img{
     height: 132px;
     position: absolute;
 }
+

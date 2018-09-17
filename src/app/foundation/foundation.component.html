@@ -1,13 +1,50 @@
 
-  <div class = "foundation baseCard" id = "foundation1"> 
-    <img *ngFor="let card of foundCards[0]"  id="{{card.id}}"  />
+  <div class = "foundation baseCard" id = "foundation0"
+    (dragover) = "allowDrop($event)"
+    (drop) = "dropToFoundation($event, 0)"
+  > 
+    <img *ngFor="let card of foundCards[0]"  id="{{card.id}}" 
+    [style.margin-top.px] = "0"
+    [style.margin-left.px]= "0"
+    [src] = "getSource(card)"
+    [style.position] = "static"
+    [draggable]="card.isDraggable"
+    
+    />
   </div>
-  <div class = "foundation baseCard" id = "foundation2"> 
-    <img *ngFor="let card of foundCards[1]"  id="{{card.id}}"  />
+  <div class = "foundation baseCard" id = "foundation1"
+    (dragover) = "allowDrop($event)"
+    (drop) = "dropToFoundation($event, 1)"
+  > 
+    <img *ngFor="let card of foundCards[1]"  id="{{card.id}}"  
+    [style.margin-top.px] = "0"
+    [style.margin-left.px]= "0"
+    [src] = "getSource(card)"
+    [style.position] = "static"
+    [draggable]="card.isDraggable"
+    />
   </div>
-  <div class = "foundation baseCard" id = "foundation3"> 
-    <img *ngFor="let card of foundCards[2]"  id="{{card.id}}"  />
+  <div class = "foundation baseCard" id = "foundation2"
+    (dragover) = "allowDrop($event)"
+    (drop) = "dropToFoundation($event, 2)"
+  > 
+    <img *ngFor="let card of foundCards[2]"  id="{{card.id}}"  
+    [style.margin-top.px] = "0"
+    [style.margin-left.px]= "0"
+    [src] = "getSource(card)"
+    [style.position] = "static"
+    [draggable]="card.isDraggable"
+    />
   </div>
-  <div class = "foundation baseCard" id = "foundation4"> 
-    <img *ngFor="let card of foundCards[3]"  id="{{card.id}}"  />
+  <div class = "foundation baseCard" id = "foundation3"
+    (dragover) = "allowDrop($event)"
+    (drop) = "dropToFoundation($event, 3)"
+  > 
+    <img *ngFor="let card of foundCards[3]"  id="{{card.id}}" 
+    [style.margin-top.px] = "0"
+    [style.margin-left.px]= "0"
+    [src] = "getSource(card)"
+    [style.position] = "static"
+    [draggable]="card.isDraggable"
+    />
   </div>

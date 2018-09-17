@@ -5,5 +5,6 @@ export class Card{
     color: string;
 
     isDraggable: boolean;
+    isFaceUp: boolean;
 
 }

@@ -54,7 +54,8 @@ export class InitializeTableauService {
         let cardHold: Card = cardHolder.pop();
 
         if(i == 0){
-          cardHold.isDraggable = true;          
+          cardHold.isDraggable = true;
+          cardHold.isFaceUp = true;          
         }
          maneuverCardss[ctr].push(cardHold);
       }
