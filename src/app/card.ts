@@ -3,4 +3,7 @@ export class Card{
     rank: string;
     suit: string;
     color: string;
+
+    isDraggable: boolean;
+
 }

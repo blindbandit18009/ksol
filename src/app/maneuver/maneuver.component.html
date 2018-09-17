@@ -1,27 +1,91 @@
-<div class = "maneuver baseCard" id = "maneuver1"> 
-  <img *ngFor="let card of maneuver1"  id="{{card.id}}"  />
+<div class = "maneuver baseCard" id = "maneuver0"> 
+  <img *ngFor="let card of manCards[0]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 0, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 0, i)"
+  
+  />
 </div>    
   
+<div class = "maneuver baseCard" id = "maneuver1"> 
+  <img *ngFor="let card of manCards[1]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 1, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 1, i)"
+  />
+</div>
+
 <div class = "maneuver baseCard" id = "maneuver2"> 
-  <img *ngFor="let card of maneuver2"  id="{{card.id}}"  />
+  <img *ngFor="let card of manCards[2]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 2, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 2, i)"
+   />
 </div>
 
 <div class = "maneuver baseCard" id = "maneuver3"> 
-  <img *ngFor="let card of maneuver3"  id="{{card.id}}"  />
+  <img *ngFor="let card of manCards[3]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 3, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 3, i)"
+   />
 </div>
 
 <div class = "maneuver baseCard" id = "maneuver4"> 
-  <img *ngFor="let card of maneuver4"  id="{{card.id}}"  />
+  <img *ngFor="let card of manCards[4]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 4, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 4, i)"
+   />
 </div>
 
 <div class = "maneuver baseCard" id = "maneuver5"> 
-  <img *ngFor="let card of maneuver5"  id="{{card.id}}"  />
+  <img *ngFor="let card of manCards[5]; let i = index"  id="{{card.id}}"
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
+
+  (dragstart) = "dragStart($event, card, 5, i)"
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 5, i)"
+   />
 </div>
 
 <div class = "maneuver baseCard" id = "maneuver6"> 
-  <img *ngFor="let card of maneuver6"  id="{{card.id}}"  />
-</div>
+  <img *ngFor="let card of manCards[6]; let i = index"  id="{{card.id}}" 
+  [style.margin-top.px] = "getMargin(i)"
+  [src] = "getSource(card)"
+  [style.position] = "static"
+  draggable=""
 
-<div class = "maneuver baseCard" id = "maneuver7"> 
-  <img *ngFor="let card of maneuver7"  id="{{card.id}}"  />
+  (dragstart) = "dragStart($event, card, 6, i)" 
+  (dragover) = "allowDrop($event)"
+  (drop) = "dropzone($event, card, 6, i)"
+   />
 </div>

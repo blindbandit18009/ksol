@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { talonCardss } from '../cardCollection';
 import { Card } from '../card';
 import { InitializeTableauService } from '../initialize-tableau.service';
 
@@ -14,5 +15,12 @@ export class TalonWasteComponent implements OnInit {
   ngOnInit() {
   }
 
-  talonCards: Card[] = this.initializeTalon.talonCards;
+  talonCards: Card[] = talonCardss;
+  //wasteCards: Card[] =
+  
+
+  getSource(card:Card){
+    return '../src/assets/images/'+card.id+'.png';
+  }
+
 }

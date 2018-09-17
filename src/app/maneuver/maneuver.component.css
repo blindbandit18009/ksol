@@ -2,10 +2,12 @@
     position: static;
     float: left;
     margin-left: 3.5%;
+    margin-top: 0%;
 }
 
-#maneuver1{
-    margin-left: 10%;
+#maneuver0{
+   /* margin-left: 10%; */
+   margin-left: 0px;
 }
 
 img{

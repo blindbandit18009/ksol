@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { foundationCardss } from '../cardCollection';
+import { Card } from '../card';
 
 @Component({
   selector: 'app-foundation',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoundationComponent implements OnInit {
 
+  foundCards :Card[][] = foundationCardss;
+  
   constructor() { }
 
   ngOnInit() {
   }
+  
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InitializeTableauService } from '../initialize-tableau.service';
 import { Card } from '../card';
+import { maneuverCardss, talonCardss} from '../cardCollection';
+
 
 @Component({
   selector: 'app-card',
@@ -13,13 +15,15 @@ export class CardComponent implements OnInit {
 
   maneuverCards: Card[] = this.initializeDeckService.getManeuverCards();
   talonCards: Card[] = this.initializeDeckService.getTalonCards();
-
+  talonCardss = this.talonCards;
+  
   ngOnInit() {
     
   }
 
+
   ngAfterViewInit(){
-    this.initializeDeckService.initializeStyles();
+    //this.initializeDeckService.initializeStyles();
   }
 
 }

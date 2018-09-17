@@ -10,7 +10,8 @@ app-talon-waste{
 }
 
 app-foundation{
-    width: 40%;
+    /*width: 40%; */
+    width: 50%;
     display: inline-block;
 }
 

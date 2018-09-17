@@ -1,5 +1,11 @@
 <div class = "talon baseCard" id = "talonBase"> 
-    <img *ngFor="let card of talonCards"  alt = "{{card.id}}" id="{{card.id}}"/>
+    <img *ngFor="let card of talonCards"  
+    [src] = "getSource(card)"
+    alt = "{{card.id}}" id="{{card.id}}"/>
 </div>
 
-<div class = "waste baseCard" id = wasteBase>  </div>
+<div class = "waste baseCard" id = wasteBase> 
+    <img *ngFor="let card of wasteCards"  
+    [src] = "getSource(card)"
+    alt = "{{card.id}}" id="{{card.id}}"/>
+ </div>

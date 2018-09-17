@@ -1,5 +1,13 @@
 
-  <div class = "foundation baseCard" id = "foundation1" (click)="clickedTalon($event)"> </div>
-  <div class = "foundation baseCard" id = "foundation2"> </div>
-  <div class = "foundation baseCard" id = "foundation3"> </div>
-  <div class = "foundation baseCard" id = "foundation4"> </div>
+  <div class = "foundation baseCard" id = "foundation1"> 
+    <img *ngFor="let card of foundCards[0]"  id="{{card.id}}"  />
+  </div>
+  <div class = "foundation baseCard" id = "foundation2"> 
+    <img *ngFor="let card of foundCards[1]"  id="{{card.id}}"  />
+  </div>
+  <div class = "foundation baseCard" id = "foundation3"> 
+    <img *ngFor="let card of foundCards[2]"  id="{{card.id}}"  />
+  </div>
+  <div class = "foundation baseCard" id = "foundation4"> 
+    <img *ngFor="let card of foundCards[3]"  id="{{card.id}}"  />
+  </div>
