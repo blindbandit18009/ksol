@@ -37,6 +37,10 @@ export class ManeuverComponent implements OnInit {
     this.cardMove.setDragCard(ev, card, cardCol, cardRow);
   }
 
+  dropBase(ev, baseCol){
+    this.cardMove.dropManeuverBase(ev, baseCol);
+  }
+
   getMargin(i: number){
     return i*31;
   }

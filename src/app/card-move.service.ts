@@ -23,61 +23,51 @@ export class CardMoveService {
 
 
   dropCard(ev, card, cardCol, cardRow){
-    let cardDrop = card;
-    let cardDropCol = cardCol;
-    console.log("dropped col: " +cardDropCol);
-    let cardDropRow = cardRow;
-    let loc : number;
-    let dropIndex;
-    let attribx;
-    let parentx;
+    //let cardDrop = card;
 
     //maneuver to maneuver manipulation
-    let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, cardDrop);
-    console.log("returned value" +isManeuverForTransfer);
-
+    let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, card);
     if(isManeuverForTransfer){
-      maneuverCardss[cardDropCol].push(this.cardDragged);
-      console.log(this.cardDragged);
-     
-      loc = maneuverCardss[this.cardDraggedCol].indexOf(this.cardDragged)
-
-      let dgCard = document.getElementById(this.cardDragged.id);
-      let parentDgCard = dgCard.parentElement;
-      parentDgCard.removeChild(dgCard);
-
-
-      maneuverCardss[this.cardDraggedCol].splice(loc,1);
-      if(maneuverCardss[this.cardDraggedCol].length != 0){
-        maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isDraggable = true;
-      }
-      
-
-      //flipping of last card --ok
-      // if(maneuverCardss[this.cardDraggedCol].length != 0){
-      //   let lastCard = maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].id
-      //   console.log("lastCard: " +lastCard);
-      //   let x = document.getElementById(lastCard);
-      //   let srcFaceUp = '../src/assets/images/'+lastCard+'.png';
-      //   x.setAttribute('src', srcFaceUp);
-      //   x.setAttribute('draggable', 'true');
-      // }
-            
-      // console.log("maneuver"+cardDropCol);
-      // dgCard = document.getElementById("maneuver"+cardDropCol);
-      // console.log("dgCard element: " +dgCard);
-      // console.log("last element: " +dgCard.lastElementChild.id);
-      // console.log("length: " +dgCard.children.length);
-      
+      this.transferCard(cardCol);
     }
 
   }
 
 
+  dropManeuverBase(ev, baseCol): void{
+    // console.log("card Dragged:" +this.cardDragged.id);
+    // console.log("card drag col: " +this.cardDraggedCol);
+    // console.log("dropped to maneuver: " +baseCol);
+    // let loc: number;
+    if(this.cardDragged.rank == 'K'){
+      this.transferCard(baseCol);
+    }
+  }
 
 
 
+  transferCard(maneuverColumn){
+    let ctr: number = 0;
+    let lastIndexOfColumn: number = 0;
+    let loc = maneuverCardss[this.cardDraggedCol].indexOf(this.cardDragged);
+    lastIndexOfColumn = maneuverCardss[this.cardDraggedCol].length-1;
+    
+    // let cardHolder: Card[] = [];
+    while((loc+ctr) <= lastIndexOfColumn){
+      maneuverCardss[maneuverColumn].push(maneuverCardss[this.cardDraggedCol][loc+ctr]);
+      ctr++;
+    }
 
+    maneuverCardss[this.cardDraggedCol].splice(loc,ctr);
+
+    //flipping cards
+    if(maneuverCardss[this.cardDraggedCol].length != 0){
+      maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isDraggable = true;
+    }
+
+
+
+  }
 
 
   
