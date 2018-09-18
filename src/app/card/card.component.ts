@@ -13,17 +13,14 @@ export class CardComponent implements OnInit {
 
   constructor(private initializeDeckService: InitializeTableauService) { }
 
-  maneuverCards: Card[] = this.initializeDeckService.getManeuverCards();
-  talonCards: Card[] = this.initializeDeckService.getTalonCards();
-  talonCardss = this.talonCards;
-  
   ngOnInit() {
-    
+    this.initializeDeckService.performShuffle();
+    this.initializeDeckService.initializeTableau();
   }
 
 
   ngAfterViewInit(){
-    //this.initializeDeckService.initializeStyles();
+    
   }
 
 }

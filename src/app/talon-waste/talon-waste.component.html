@@ -15,8 +15,7 @@
     [style.margin-left.px] = "getWasteMargin(i)"
     [src] = "getSource(card)"
     [style.position] = "static"
-    [draggable]="card.isDraggable"
-
+    [draggable]="getIsDraggable(card)"
 
     (dragstart) = "dragStart($event, card, 0, 1)" 
     

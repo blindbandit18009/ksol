@@ -6,13 +6,9 @@ import { talonCardss, wasteCardss, maneuverCardss, foundationCardss } from './ca
   providedIn: 'root'
 })
 
-
-
 export class CardMoveService {
 
   constructor() { }
-
-  
 
   cardDragged;
   cardDraggedCol;
@@ -24,10 +20,6 @@ export class CardMoveService {
     this.cardDraggedCol = cardCol;
     this.componentFrom = componentFrom;
   }
-
-
-
-
 
   dropCard(ev, card, cardCol, cardRow){
     //maneuver to maneuver manipulation
@@ -43,14 +35,12 @@ export class CardMoveService {
       let isWasteForTransfer = this.checkMoveManeuver(this.cardDragged,card);
       if(isWasteForTransfer){
         maneuverCardss[cardCol].push(wasteCardss.pop());
-        wasteCardss[wasteCardss.length-1].isDraggable = true;
+        if(wasteCardss.length != 0){
+          wasteCardss[wasteCardss.length-1].isDraggable = true;
+        }
       }
     }
-    
   }
-
-
-
 
   dropManeuverBase(ev, baseCol): void{          //pertains to blank maneuvercolumn
     if(this.componentFrom == 0){                //cardDragged from Maneuver
@@ -59,10 +49,20 @@ export class CardMoveService {
           this.transferCard(baseCol);
         }
       }   
-    }    
+    }
+    else if(this.componentFrom == 1){         //cardDragged from waste
+      //let isWasteForTransfer = this.checkMoveManeuver(this.cardDragged,card);
+      if(maneuverCardss[baseCol].length == 0){
+        if(this.cardDragged.rank == 'K'){
+          maneuverCardss[baseCol].push(wasteCardss.pop());
+          if(wasteCardss.length != 0){
+            wasteCardss[wasteCardss.length-1].isDraggable = true;
+          }
+        }
+      }
+      
+    }
   }
-
-
 
   transferCard(maneuverColumn){
     let ctr: number = 0;
@@ -83,10 +83,6 @@ export class CardMoveService {
     }
   }
 
-
-  
-
-
   checkMoveManeuver(cardDrag, cardDrop): boolean{ 
     if(cardDrag.color != cardDrop.color){
       if((this.getCardValue(cardDrop.rank) - this.getCardValue(cardDrag.rank)) == 1){
@@ -95,7 +91,6 @@ export class CardMoveService {
     }
     return false;
   }
-
 
   getCardValue(card:string): number{
     switch(card){
@@ -116,11 +111,7 @@ export class CardMoveService {
     }
   }
   
-
-
-
   drawCards(ev){
-    
     let counter = 0;
     if(talonCardss.length < 3){
       while(counter < talonCardss.length){
@@ -162,14 +153,53 @@ export class CardMoveService {
   }
 
   dropToFoundation(ev, foundationIndex){
-    if(foundationCardss[foundationIndex].length == 0){  //empty foundation
-      if(this.cardDragged.rank = 'A'){
-        
+    let lastCardFoundation = foundationCardss[foundationIndex][foundationCardss[foundationIndex].length-1];
+    
+    if(foundationCardss[foundationIndex].length == 0){  //empty foundation+
+      if(this.cardDragged.rank == 'A'){
+        if(this.componentFrom == 0){                    //cardDragged from maneuver
+          let cardHolder = maneuverCardss[this.cardDraggedCol].pop();
+          foundationCardss[foundationIndex].push(cardHolder);
+          if(maneuverCardss[this.cardDraggedCol].length != 0){
+            maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isFaceUp = true;
+            maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isDraggable = true;
+          }
+        }
+        else if(this.componentFrom == 1){               //cardDragged from waste
+          foundationCardss[foundationIndex].push(wasteCardss.pop());
+        }
       }
-
     }
+    else if(this.componentFrom == 0){
+      if(maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1] == this.cardDragged){
+        if(this.transferrableToFoundation(lastCardFoundation, this.cardDragged)){
+          let cardHolder = maneuverCardss[this.cardDraggedCol].pop();
+          foundationCardss[foundationIndex].push(cardHolder);
+          if(maneuverCardss[this.cardDraggedCol].length != 0){
+            maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isFaceUp = true;
+            maneuverCardss[this.cardDraggedCol][maneuverCardss[this.cardDraggedCol].length-1].isDraggable = true;
+          }
+        } 
+      }
+    }
+    else if(this.componentFrom == 1){
+      if(this.transferrableToFoundation(lastCardFoundation, this.cardDragged)){
+        let cardHolder = wasteCardss.pop();
+        foundationCardss[foundationIndex].push(cardHolder); 
+      }
+    }
+   
   }
  
+  transferrableToFoundation(cardFoundation, draggedCard): boolean{
+    if(cardFoundation.suit == draggedCard.suit){
+      if(this.getCardValue(draggedCard.rank) - this.getCardValue(cardFoundation.rank) == 1){
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
 
 

@@ -3,6 +3,7 @@ import { talonCardss, wasteCardss } from '../cardCollection';
 import { Card } from '../card';
 import { InitializeTableauService } from '../initialize-tableau.service';
 import { CardMoveService } from '../card-move.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-talon-waste',
@@ -20,6 +21,7 @@ export class TalonWasteComponent implements OnInit {
 
   talonCards: Card[] = talonCardss;
   wasteCards: Card[] = wasteCardss;
+  initialWasteLength: number;
 
   getSource(card:Card){
     if(card.isFaceUp)
@@ -32,6 +34,20 @@ export class TalonWasteComponent implements OnInit {
   }
 
   getWasteMargin(index){
+
+    if(wasteCardss.length >= 3){
+      if(wasteCardss.length-1 == index){
+        return 40;
+      }
+      else if(wasteCardss.length-2 == index){
+        return 20;
+      }
+      else{
+        return 0;
+      }
+    }
+            
+    
     if(wasteCardss.length%3 == 0){  //variation of 3 margins
       if(wasteCardss.length-1 == index){
         return 40;
@@ -57,6 +73,12 @@ export class TalonWasteComponent implements OnInit {
     }
   }
 
+  getIsDraggable(card){
+    if(card == wasteCardss[wasteCardss.length-1]){
+      return true;
+    }
+    return false;
+  }
 
 
   clickTalon(ev){
@@ -64,7 +86,6 @@ export class TalonWasteComponent implements OnInit {
   }
 
   returnToTalon(ev){
-    console.log("talonClicked");
     this.cardMove.returnToTalon(ev)
   }
 

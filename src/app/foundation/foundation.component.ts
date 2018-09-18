@@ -25,5 +25,15 @@ export class FoundationComponent implements OnInit {
     this.cardMove.dropToFoundation(ev, foundationIndex);
   }
 
+  getSource(card:Card){
+    if(card.isFaceUp)
+    {
+      return '../src/assets/images/'+card.id+'.png';
+    }
+    else{
+      return '../src/assets/images/down.jpg';
+    }
+  }
+
 
 }
