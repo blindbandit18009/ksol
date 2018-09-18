@@ -11,7 +11,7 @@ import { CardMoveService } from '../card-move.service';
 })
 export class ManeuverComponent implements OnInit {
 
-  maneuverCards: Card[] = this.initializeManeuver.maneuverCards;
+  //maneuverCards: Card[] = this.initializeManeuver.maneuverCards;
   manCards: Card[] [] = maneuverCardss;
 
   constructor(

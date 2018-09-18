@@ -6,6 +6,7 @@ import { CardComponent } from './card/card.component';
 import { FoundationComponent } from './foundation/foundation.component';
 import { ManeuverComponent } from './maneuver/maneuver.component';
 import { TalonWasteComponent } from './talon-waste/talon-waste.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TalonWasteComponent } from './talon-waste/talon-waste.component';
     CardComponent,
     FoundationComponent,
     ManeuverComponent,
-    TalonWasteComponent
+    TalonWasteComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule

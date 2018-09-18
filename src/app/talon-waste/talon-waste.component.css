@@ -1,6 +1,6 @@
 .talon{
-    /* margin-left: 20%; */
-    margin-left: 0px;
+    
+    margin-left: 20%;
     float: left;
     background-image: url(../../assets/images/back.png);
     background-size: 100%;
@@ -10,6 +10,6 @@
 }
 
 .waste{
-    margin-left: 10%;
+    margin-left: 5%;
     float: left;
 }

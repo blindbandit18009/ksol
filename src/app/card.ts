@@ -4,7 +4,6 @@ export class Card{
     suit: string;
     color: string;
 
-    isDraggable: boolean;
     isFaceUp: boolean;
 
 }

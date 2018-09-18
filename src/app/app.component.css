@@ -4,14 +4,24 @@ h1{
     color: white;
 } 
 
+app-card{
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 0%;
+}
+
 app-talon-waste{
     float: left;
-    width: 50%;
+    width: 35%;
 }
 
 app-foundation{
-    /*width: 40%; */
-    width: 50%;
+    width: 40%;
+    display: inline-block;
+}
+
+app-messages{
+    width:20%;
     display: inline-block;
 }
 

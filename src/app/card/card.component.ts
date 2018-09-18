@@ -11,6 +11,8 @@ import { maneuverCardss, talonCardss} from '../cardCollection';
 })
 export class CardComponent implements OnInit {
 
+  title = "Klondike Solitaire";
+
   constructor(private initializeDeckService: InitializeTableauService) { }
 
   ngOnInit() {

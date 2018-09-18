@@ -6,7 +6,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 0, 0)"
   (dragover) = "allowDrop($event)"
@@ -23,7 +23,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 1, 0)"
   (dragover) = "allowDrop($event)"
@@ -39,7 +39,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 2, 0)"
   (dragover) = "allowDrop($event)"
@@ -55,7 +55,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 3, 0)"
   (dragover) = "allowDrop($event)"
@@ -71,7 +71,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 4, 0)"
   (dragover) = "allowDrop($event)"
@@ -87,7 +87,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 5, 0)"
   (dragover) = "allowDrop($event)"
@@ -103,7 +103,7 @@
   [style.margin-top.px] = "getMargin(i)"
   [src] = "getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isDraggable"
+  [draggable]="card.isFaceUp"
 
   (dragstart) = "dragStart($event, card, 6, 0)" 
   (dragover) = "allowDrop($event)"
