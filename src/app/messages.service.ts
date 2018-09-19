@@ -12,10 +12,9 @@ export class MessagesService {
 
 
 
-  setMessage(flag, cardDrag, dropLoc, status){
+  setMessage(flag, cardDrag, dropLoc, status:string){
     if(flag == 1){
       this.message = ""+status+" move: " +cardDrag+ " transfer to " +dropLoc;
-      
     }
     else{
       this.message = status;

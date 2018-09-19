@@ -25,6 +25,8 @@ export class CardMoveService {
 
   dropCard(ev, card, cardCol, cardRow){
     //maneuver to maneuver manipulation
+    console.log("dragged: " +this.cardDragged.id);
+    console.log("drop: " +card.id);
     if(this.componentFrom == 0){                //cardDragged from maneuver
       if(card.id == maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].id){
         let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, card);
@@ -43,11 +45,7 @@ export class CardMoveService {
         this.isValidMove = true;
       }
     }
-
-    if(this.isValidMove == false){
-      console.log(this.cardDragged.id, "Maneuver: "+cardCol, "INVALID");
-    }
-    
+   
   }
 
   dropManeuverBase(ev, baseCol): void{          //pertains to blank maneuvercolumn
@@ -143,7 +141,7 @@ export class CardMoveService {
       }
     }
 
-    this.msg.setMessage(2, this.cardDragged.id, 0, "DRAW 3 CARDS");
+    this.msg.setMessage(2, this.cardDragged, 0, "DRAW 3 CARDS");
   }
 
   returnToTalon(ev){
@@ -153,7 +151,7 @@ export class CardMoveService {
         cardHolder.isFaceUp = false;
         talonCardss.push(cardHolder);
       }
-      this.msg.setMessage(2, this.cardDragged.id, 0, "RETURN CARDS TO TALON")
+      this.msg.setMessage(2, 0, 0, "RETURN CARDS TO TALON")
     }
     else{
       this.drawCards(ev);
@@ -163,7 +161,6 @@ export class CardMoveService {
 
   dropToFoundation(ev, foundationIndex){
     let lastCardFoundation = foundationCardss[foundationIndex][foundationCardss[foundationIndex].length-1];
-    
     if(foundationCardss[foundationIndex].length == 0){  //empty foundation
       if(this.cardDragged.rank == 'A'){
         if(this.componentFrom == 0){                    //cardDragged from maneuver
@@ -231,6 +228,8 @@ export class CardMoveService {
     console.log("total cards in foundation: " +totalCards);
     if(totalCards == 52){
       this.msg.setMessage(2,0,0,"CONGRATULATIONS... Solitaire COMPLETED");
+      let modalElement = document.getElementById("jw-modal");
+      modalElement.style.display = "block";
     }
   }
 

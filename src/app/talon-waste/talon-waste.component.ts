@@ -4,6 +4,7 @@ import { Card } from '../card';
 import { InitializeTableauService } from '../initialize-tableau.service';
 import { CardMoveService } from '../card-move.service';
 import { TouchSequence } from 'selenium-webdriver';
+import { AutoMoveService } from '../auto-move.service';
 
 @Component({
   selector: 'app-talon-waste',
@@ -13,7 +14,8 @@ import { TouchSequence } from 'selenium-webdriver';
 export class TalonWasteComponent implements OnInit {
 
   constructor(private initializeTalon: InitializeTableauService,
-    private cardMove: CardMoveService
+    private cardMove: CardMoveService,
+    private autoMove : AutoMoveService
   ) { }
 
   ngOnInit() {
@@ -85,8 +87,13 @@ export class TalonWasteComponent implements OnInit {
     this.cardMove.drawCards(ev);
   }
 
+  cardDblClicked(ev, card, cardCol, cardLoc){
+    this.autoMove.autoMove(ev, card, cardCol, cardLoc);
+  }
+
+
   returnToTalon(ev){
-    this.cardMove.returnToTalon(ev)
+    this.cardMove.returnToTalon(ev);
   }
 
   dragStart(ev, card, number, componentFrom){

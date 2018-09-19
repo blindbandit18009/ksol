@@ -1,0 +1,80 @@
+.jw-modal{
+    display: none;
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* z-index must be higher than .jw-modal-background */
+    z-index: 1000;
+    
+
+}
+
+.modal-message{
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+
+.jw-modal-body{
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+
+    /* margin exposes part of the modal background */
+    margin: 40px;
+    width: 50%;
+    text-align: center;
+    margin-top: 15%;
+    margin-left: 22.5%;
+
+}
+
+
+
+.jw-modal-background{
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+     
+    /* z-index must be below .jw-modal and above everything else  */
+    z-index: 900;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#exitGame{
+    margin-left: 3%;
+}

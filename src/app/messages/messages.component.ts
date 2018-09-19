@@ -8,7 +8,7 @@ import { MessagesService } from '../messages.service';
 })
 export class MessagesComponent implements OnInit {
 
-  message:string = this.messageSvc.message;
+  message: string = this.messageSvc.message;
 
   constructor(private messageSvc: MessagesService) { }
 

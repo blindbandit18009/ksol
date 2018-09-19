@@ -3,6 +3,7 @@ import { Card } from '../card';
 import { InitializeTableauService } from '../initialize-tableau.service';
 import { maneuverCardss } from '../cardCollection';
 import { CardMoveService } from '../card-move.service';
+import { AutoMoveService } from '../auto-move.service';
 
 @Component({
   selector: 'app-maneuver',
@@ -16,7 +17,8 @@ export class ManeuverComponent implements OnInit {
 
   constructor(
     private initializeManeuver: InitializeTableauService,
-    private cardMove: CardMoveService
+    private cardMove: CardMoveService,
+    private cardAutoMove: AutoMoveService
     ) { }
 
   ngOnInit() {
@@ -37,6 +39,12 @@ export class ManeuverComponent implements OnInit {
   dropBase(ev, baseCol){
     this.cardMove.dropManeuverBase(ev, baseCol);
   }
+
+  cardDblClicked(ev, card, cardCol, cardLoc){
+    this.cardAutoMove.autoMove(ev, card, cardCol, cardLoc);
+  }
+
+
 
   getMargin(i: number){
     return i*31;

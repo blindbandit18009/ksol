@@ -16,8 +16,8 @@ export class InitializeTableauService {
   constructor() { }
 
   performShuffle(): void {
-    //this.shuffledCards = this.shuffleDeck(DECK);
-    this.shuffledCards = DECK;
+    this.shuffledCards = this.shuffleDeck(DECK);
+    //this.shuffledCards = DECK;
     this.isShuffled = 1;
   }
 

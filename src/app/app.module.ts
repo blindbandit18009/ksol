@@ -7,6 +7,7 @@ import { FoundationComponent } from './foundation/foundation.component';
 import { ManeuverComponent } from './maneuver/maneuver.component';
 import { TalonWasteComponent } from './talon-waste/talon-waste.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MessagesComponent } from './messages/messages.component';
     FoundationComponent,
     ManeuverComponent,
     TalonWasteComponent,
-    MessagesComponent
+    MessagesComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule
