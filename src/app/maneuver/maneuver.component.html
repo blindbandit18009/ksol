@@ -1,120 +1,17 @@
-<div class = "maneuver baseCard" id = "maneuver0"
+<div *ngFor="let base of manCards; let col = index" class = "maneuver baseCard" id = "maneuver{{col}}"
 (dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 0)"
+(drop) = "dropBase($event, col)"
 > 
-  <img *ngFor="let card of manCards[0]; let i = index"  id="{{card.id}}" 
+  <img *ngFor="let card of manCards[col]; let i = index"  id="{{card.id}}" 
   [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
+  [src] = "cardSvc.getSource(card)"
   [style.position] = "static"
-  [draggable]="card.isFaceUp"
+  [draggable]="card.isFaceUp" 
 
-  (dragstart) = "dragStart($event, card, 0, 0)"
+  (dragstart) = "dragStart($event, card, col, 0)"
   (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 0, i)"
-  (click) = "cardDblClicked($event, card, 0, 0)"
+  (drop) = "dropzone($event, card, col, i)"
+  (click) = "cardDblClicked($event, card, col, 0)"
   
   />
-</div>    
-  
-<div class = "maneuver baseCard" id = "maneuver1"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 1)"
-> 
-  <img *ngFor="let card of manCards[1]; let i = index"  id="{{card.id}}" 
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 1, 0)"
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 1, i)"
-  (click) = "cardDblClicked($event, card, 1, 0)"
- 
-  />
-</div>
-
-<div class = "maneuver baseCard" id = "maneuver2"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 2)"
-> 
-  <img *ngFor="let card of manCards[2]; let i = index"  id="{{card.id}}" 
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 2, 0)"
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 2, i)"
-  (click) = "cardDblClicked($event, card, 2, 0)"
-   />
-</div>
-
-<div class = "maneuver baseCard" id = "maneuver3"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 3)"
-> 
-  <img *ngFor="let card of manCards[3]; let i = index"  id="{{card.id}}" 
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 3, 0)"
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 3, i)"
-  (click) = "cardDblClicked($event, card, 3, 0)"
-   />
-</div>
-
-<div class = "maneuver baseCard" id = "maneuver4"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 4)"
-> 
-  <img *ngFor="let card of manCards[4]; let i = index"  id="{{card.id}}" 
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 4, 0)"
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 4, i)"
-  (click) = "cardDblClicked($event, card, 4, 0)"
-   />
-</div>
-
-<div class = "maneuver baseCard" id = "maneuver5"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 5)"
-> 
-  <img *ngFor="let card of manCards[5]; let i = index"  id="{{card.id}}"
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 5, 0)"
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 5, i)"
-  (click) = "cardDblClicked($event, card, 5, 0)"
-   />
-</div>
-
-<div class = "maneuver baseCard" id = "maneuver6"
-(dragover) = "allowDrop($event)"
-(drop) = "dropBase($event, 6)"
-> 
-  <img *ngFor="let card of manCards[6]; let i = index"  id="{{card.id}}" 
-  [style.margin-top.px] = "getMargin(i)"
-  [src] = "getSource(card)"
-  [style.position] = "static"
-  [draggable]="card.isFaceUp"
-
-  (dragstart) = "dragStart($event, card, 6, 0)" 
-  (dragover) = "allowDrop($event)"
-  (drop) = "dropzone($event, card, 6, i)"
-  (click) = "cardDblClicked($event, card, 6, 0)"
-   />
 </div>

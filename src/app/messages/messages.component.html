@@ -1,9 +1,9 @@
 <div class="messages">
   <div class="messTitle">
-      <p>Messages:</p>
+      <p [innerHTML]="messageSvc.title"></p>
   </div>
     <div class="messMessage">
-        <span>{{message}}</span>  
+       <span [innerHTML]="messageSvc.message"></span>
     </div>
 </div>
 

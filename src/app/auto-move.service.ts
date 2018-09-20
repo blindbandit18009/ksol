@@ -19,16 +19,52 @@ export class AutoMoveService {
     this.isCardMoved = false;
     
     //try to move to maneuver
-    for(let index = 0; index < 7; index ++){
-      if(maneuverCardss[index].length != 0){
-        let cardHolder = maneuverCardss[index][maneuverCardss[index].length-1]; //pertaining to last card of column
-        if(cardHolder.color != card.color){
-          if(this.cardMove.getCardValue(cardHolder.rank) - this.cardMove.getCardValue(card.rank) == 1){
-            
-            if(cardLocation == 0){                //card from maneuver
+    if(card.rank != 'A'){
+      for(let index = 0; index < 7; index ++){
+        if(maneuverCardss[index].length != 0){
+          let cardHolder = maneuverCardss[index][maneuverCardss[index].length-1]; //pertaining to last card of column
+          if(cardHolder.color != card.color){
+            if(this.cardMove.getCardValue(cardHolder.rank) - this.cardMove.getCardValue(card.rank) == 1){
+              
+              if(cardLocation == 0){                //card from maneuver
+                let ctr = 0;
+                let loc = maneuverCardss[cardCol].indexOf(card);
+  
+                while((loc + ctr) <= (maneuverCardss[cardCol].length-1)){
+                  maneuverCardss[index].push(maneuverCardss[cardCol][loc + ctr]);
+                  ctr++;
+                }
+                maneuverCardss[cardCol].splice(loc, ctr);
+          
+                if(maneuverCardss[cardCol].length != 0){
+                  maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
+                }
+                  this.msgsvc.setMessage(1, card.id, "Maneuver: "+(index+1), "AUTO");
+                  this.isCardMoved = true;
+                  index = 8;
+  
+              }         
+              else if(cardLocation == 1 && (card == wasteCardss[wasteCardss.length-1])){           //card from waste;
+                maneuverCardss[index].push(wasteCardss.pop());
+                this.msgsvc.setMessage(1, card.id, "Maneuver: "+(index+1), "AUTO");
+                this.isCardMoved = true;
+                index = 8;
+              }
+            }
+          }
+        }
+        else{
+          if(card.rank == "K" && cardLocation == 1 && (card == wasteCardss[wasteCardss.length-1])){
+            maneuverCardss[index].push(wasteCardss.pop());
+            this.msgsvc.setMessage(1, card.id, "Maneuver: "+(index+1), "AUTO");
+            this.isCardMoved = true;
+            index = 8;
+          }
+          else if(card.rank == "K" && cardLocation == 0){
+            if(maneuverCardss[cardCol][0] != card){
               let ctr = 0;
               let loc = maneuverCardss[cardCol].indexOf(card);
-
+    
               while((loc + ctr) <= (maneuverCardss[cardCol].length-1)){
                 maneuverCardss[index].push(maneuverCardss[cardCol][loc + ctr]);
                 ctr++;
@@ -38,56 +74,19 @@ export class AutoMoveService {
               if(maneuverCardss[cardCol].length != 0){
                 maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
               }
-                this.msgsvc.setMessage(1, card.id, "Maneuver: "+index, "AUTO-MOVED");
-                this.isCardMoved = true;
-                index = 8;
-
-            }         
-            else if(cardLocation == 1 && (card == wasteCardss[wasteCardss.length-1])){           //card from waste;
-              maneuverCardss[index].push(wasteCardss.pop());
-              this.msgsvc.setMessage(1, card.id, "Maneuver: "+index, "AUTO-MOVED");
+              this.msgsvc.setMessage(1, card.id, "Maneuver: "+(index+1), "AUTO");
               this.isCardMoved = true;
               index = 8;
+              
             }
+            
+                      
+            
           }
-        }
-      }
-      else{
-        if(card.rank == "K" && cardLocation == 1 && (card == wasteCardss[wasteCardss.length-1])){
-          maneuverCardss[index].push(wasteCardss.pop());
-          this.msgsvc.setMessage(1, card.id, "Maneuver: "+index, "AUTO-MOVED");
-          this.isCardMoved = true;
-          index = 8;
-        }
-        else if(card.rank == "K" && cardLocation == 0){
-          
-          let ctr = 0;
-          let loc = maneuverCardss[cardCol].indexOf(card);
-
-          while((loc + ctr) <= (maneuverCardss[cardCol].length-1)){
-            maneuverCardss[index].push(maneuverCardss[cardCol][loc + ctr]);
-            ctr++;
-          }
-          maneuverCardss[cardCol].splice(loc, ctr);
-    
-          if(maneuverCardss[cardCol].length != 0){
-            maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
-          }
-            this.msgsvc.setMessage(1, card.id, "Maneuver: "+index, "AUTO-MOVED");
-            this.isCardMoved = true;
-            index = 8;
-          
-                    
-          // maneuverCardss[index].push(maneuverCardss[cardCol].pop());
-          // if(maneuverCardss[cardCol].length != 0){
-          //   maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
-          //   this.msgsvc.setMessage(1, card.id, "Maneuver: "+index, "AUTO-MOVED");
-          //   this.isCardMoved = true;
-          //   index = 8;
-          // }
         }
       }
     }
+    
       
 
     if(this.isCardMoved == false){      //try to move to foundation
@@ -101,7 +100,7 @@ export class AutoMoveService {
                 if(maneuverCardss[cardCol].length != 0){
                   maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
                 }
-                this.msgsvc.setMessage(1, card.id, "Foundation: "+index, "AUTO-MOVED");
+                this.msgsvc.setMessage(1, card.id, "Foundation: "+(index+1), "AUTO");
                 this.isCardMoved = true;
                 index = 5;
                 this.cardMove.checkIfSuccess();
@@ -110,7 +109,7 @@ export class AutoMoveService {
               else if(cardLocation == 1){     //card from waste
                 if(card == wasteCardss[wasteCardss.length-1]){
                   foundationCardss[index].push(wasteCardss.pop());
-                  this.msgsvc.setMessage(1, card.id, "Foundation: "+index, "AUTO-MOVED");
+                  this.msgsvc.setMessage(1, card.id, "Foundation: "+(index+1), "AUTO");
                   this.isCardMoved = true;
                   index = 5;
                   this.cardMove.checkIfSuccess();
@@ -127,14 +126,14 @@ export class AutoMoveService {
               if(maneuverCardss[cardCol].length != 0){
                 maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].isFaceUp = true;
               }
-              this.msgsvc.setMessage(1, card.id, "Foundation: "+index, "AUTO-MOVED");
+              this.msgsvc.setMessage(1, card.id, "Foundation: "+(index+1), "AUTO");
               this.isCardMoved = true;
               index = 5;
             }
             else if(cardLocation == 1){     //ace card is from waste
               if(card == wasteCardss[wasteCardss.length-1]){
                 foundationCardss[index].push(wasteCardss.pop());
-                this.msgsvc.setMessage(1, card.id, "Foundation: "+index, "AUTO-MOVED");
+                this.msgsvc.setMessage(1, card.id, "Foundation: "+(index+1), "AUTO");
                 this.isCardMoved = true;
                 index = 5;
               }

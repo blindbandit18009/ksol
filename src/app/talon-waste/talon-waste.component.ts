@@ -3,8 +3,8 @@ import { talonCardss, wasteCardss } from '../cardCollection';
 import { Card } from '../card';
 import { InitializeTableauService } from '../initialize-tableau.service';
 import { CardMoveService } from '../card-move.service';
-import { TouchSequence } from 'selenium-webdriver';
 import { AutoMoveService } from '../auto-move.service';
+import { CardService } from '../card.service';
 
 @Component({
   selector: 'app-talon-waste',
@@ -15,7 +15,8 @@ export class TalonWasteComponent implements OnInit {
 
   constructor(private initializeTalon: InitializeTableauService,
     private cardMove: CardMoveService,
-    private autoMove : AutoMoveService
+    private autoMove : AutoMoveService,
+    private cardSvc: CardService
   ) { }
 
   ngOnInit() {
@@ -25,15 +26,7 @@ export class TalonWasteComponent implements OnInit {
   wasteCards: Card[] = wasteCardss;
   initialWasteLength: number;
 
-  getSource(card:Card){
-    if(card.isFaceUp)
-    {
-      return '../src/assets/images/'+card.id+'.png';
-    }
-    else{
-      return '../src/assets/images/down.jpg';
-    }
-  }
+  
 
   getWasteMargin(index){
 
@@ -82,18 +75,8 @@ export class TalonWasteComponent implements OnInit {
     return false;
   }
 
-
-  clickTalon(ev){
-    this.cardMove.drawCards(ev);
-  }
-
   cardDblClicked(ev, card, cardCol, cardLoc){
     this.autoMove.autoMove(ev, card, cardCol, cardLoc);
-  }
-
-
-  returnToTalon(ev){
-    this.cardMove.returnToTalon(ev);
   }
 
   dragStart(ev, card, number, componentFrom){

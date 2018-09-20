@@ -1,9 +1,9 @@
 <div class = "talon baseCard" id = "talonBase"
-    (click) = "returnToTalon($event)"
+    (click) = "cardMove.returnToTalon($event)"
     > 
     <img *ngFor="let card of talonCards; let i = index" id="{{card.id}}" 
     [style.margin-top.px] = "0"
-    [src] = "getSource(card)"
+    [src] = "cardSvc.getSource(card)"
     [style.position] = "static"
     [draggable]="card.isFaceUp"
 
@@ -13,7 +13,7 @@
 <div class = "waste baseCard" id = wasteBase> 
     <img *ngFor="let card of wasteCards; let i = index"  id="{{card.id}}"
     [style.margin-left.px] = "getWasteMargin(i)"
-    [src] = "getSource(card)"
+    [src] = "cardSvc.getSource(card)"
     [style.position] = "static"
     [draggable]="getIsDraggable(card)"
 

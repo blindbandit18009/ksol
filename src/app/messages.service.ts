@@ -6,15 +6,14 @@ import { Injectable } from '@angular/core';
 export class MessagesService {
 
   constructor() { }
-
-  message: string = "Welcome to Solitaire";
-
-
-
+  
+  title: string  = "";
+  message: string = "Welcome to Solitaire Game";
 
   setMessage(flag, cardDrag, dropLoc, status:string){
+    this.title = "MOVEMENT";
     if(flag == 1){
-      this.message = ""+status+" move: " +cardDrag+ " transfer to " +dropLoc;
+      this.message = status+ " move: <br/>" +cardDrag+ " transfer to " +dropLoc;
     }
     else{
       this.message = status;

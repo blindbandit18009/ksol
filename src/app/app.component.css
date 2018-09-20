@@ -12,7 +12,8 @@ app-card{
 
 app-talon-waste{
     float: left;
-    width: 35%;
+    width: 25%;
+    margin-left: 3%;
 }
 
 app-foundation{
@@ -21,7 +22,7 @@ app-foundation{
 }
 
 app-messages{
-    width:20%;
+    width:25%;
     display: inline-block;
 }
 

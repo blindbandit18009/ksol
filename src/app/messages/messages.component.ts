@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessagesService } from '../messages.service';
 
 @Component({
@@ -7,8 +7,6 @@ import { MessagesService } from '../messages.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
-  message: string = this.messageSvc.message;
 
   constructor(private messageSvc: MessagesService) { }
 

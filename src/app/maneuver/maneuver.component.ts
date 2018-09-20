@@ -4,6 +4,7 @@ import { InitializeTableauService } from '../initialize-tableau.service';
 import { maneuverCardss } from '../cardCollection';
 import { CardMoveService } from '../card-move.service';
 import { AutoMoveService } from '../auto-move.service';
+import { CardService } from '../card.service';
 
 @Component({
   selector: 'app-maneuver',
@@ -12,13 +13,13 @@ import { AutoMoveService } from '../auto-move.service';
 })
 export class ManeuverComponent implements OnInit {
 
-  //maneuverCards: Card[] = this.initializeManeuver.maneuverCards;
   manCards: Card[] [] = maneuverCardss;
 
   constructor(
     private initializeManeuver: InitializeTableauService,
     private cardMove: CardMoveService,
-    private cardAutoMove: AutoMoveService
+    private cardAutoMove: AutoMoveService,
+    private cardSvc: CardService
     ) { }
 
   ngOnInit() {
@@ -41,22 +42,14 @@ export class ManeuverComponent implements OnInit {
   }
 
   cardDblClicked(ev, card, cardCol, cardLoc){
-    this.cardAutoMove.autoMove(ev, card, cardCol, cardLoc);
+    if(card.isFaceUp){
+      this.cardAutoMove.autoMove(ev, card, cardCol, cardLoc);
+    }
+    
   }
-
-
 
   getMargin(i: number){
     return i*31;
   }
 
-  getSource(card:Card){
-    if(card.isFaceUp)
-    {
-      return '../src/assets/images/'+card.id+'.png';
-    }
-    else{
-      return '../src/assets/images/down.jpg';
-    }
-  }
 }

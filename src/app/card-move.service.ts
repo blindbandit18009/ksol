@@ -27,12 +27,13 @@ export class CardMoveService {
     //maneuver to maneuver manipulation
     console.log("dragged: " +this.cardDragged.id);
     console.log("drop: " +card.id);
+    
     if(this.componentFrom == 0){                //cardDragged from maneuver
       if(card.id == maneuverCardss[cardCol][maneuverCardss[cardCol].length-1].id){
         let isManeuverForTransfer = this.checkMoveManeuver(this.cardDragged, card);
         if(isManeuverForTransfer){
           this.transferCard(cardCol);
-          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+cardCol, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+(cardCol+1), "VALID");
           this.isValidMove = true;
         }
       }
@@ -41,7 +42,7 @@ export class CardMoveService {
       let isWasteForTransfer = this.checkMoveManeuver(this.cardDragged,card);
       if(isWasteForTransfer){
         maneuverCardss[cardCol].push(wasteCardss.pop());
-        this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+cardCol, "VALID");
+        this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+(cardCol+1), "VALID");
         this.isValidMove = true;
       }
     }
@@ -53,7 +54,7 @@ export class CardMoveService {
       if(maneuverCardss[baseCol].length == 0){
         if(this.cardDragged.rank == 'K'){
           this.transferCard(baseCol);
-          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+baseCol, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+(baseCol+1), "VALID");
           this.isValidMove = true;
         }
       }   
@@ -62,7 +63,7 @@ export class CardMoveService {
       if(maneuverCardss[baseCol].length == 0){
         if(this.cardDragged.rank == 'K'){
           maneuverCardss[baseCol].push(wasteCardss.pop());
-          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+baseCol, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+(baseCol+1), "VALID");
           this.isValidMove = true;
 
         }
@@ -71,7 +72,7 @@ export class CardMoveService {
     }
 
     if(this.isValidMove == false){
-      this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+baseCol, "INVALID");
+      this.msg.setMessage(1, this.cardDragged.id, "Maneuver: "+(baseCol+1), "INVALID");
     }
 
   }
@@ -146,12 +147,18 @@ export class CardMoveService {
 
   returnToTalon(ev){
     if(talonCardss.length == 0){
-      while(wasteCardss.length != 0){
-        let cardHolder = wasteCardss.pop();
-        cardHolder.isFaceUp = false;
-        talonCardss.push(cardHolder);
+      if(wasteCardss.length != 0){
+        while(wasteCardss.length != 0){
+          let cardHolder = wasteCardss.pop();
+          cardHolder.isFaceUp = false;
+          talonCardss.push(cardHolder);
+        }
+        this.msg.setMessage(2, 0, 0, "RETURN CARDS TO TALON")
       }
-      this.msg.setMessage(2, 0, 0, "RETURN CARDS TO TALON")
+      else{
+        this.msg.setMessage(2, 0, 0, "No Cards to Return to Talon")
+      }
+      
     }
     else{
       this.drawCards(ev);
@@ -166,7 +173,7 @@ export class CardMoveService {
         if(this.componentFrom == 0){                    //cardDragged from maneuver
           let cardHolder = maneuverCardss[this.cardDraggedCol].pop();
           foundationCardss[foundationIndex].push(cardHolder);
-          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+foundationIndex, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+(foundationIndex+1), "VALID");
           this.isValidMove = true;
           this.checkIfSuccess();
           if(maneuverCardss[this.cardDraggedCol].length != 0){
@@ -175,7 +182,7 @@ export class CardMoveService {
         }
         else if(this.componentFrom == 1){               //cardDragged from waste
           foundationCardss[foundationIndex].push(wasteCardss.pop());
-          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+foundationIndex, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+(foundationIndex+1), "VALID");
           this.isValidMove = true;
           this.checkIfSuccess();
         }
@@ -186,7 +193,7 @@ export class CardMoveService {
         if(this.transferrableToFoundation(lastCardFoundation, this.cardDragged)){
           let cardHolder = maneuverCardss[this.cardDraggedCol].pop();
           foundationCardss[foundationIndex].push(cardHolder);
-          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+foundationIndex, "VALID");
+          this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+(foundationIndex+1), "VALID");
           this.isValidMove = true;
           this.checkIfSuccess();
           if(maneuverCardss[this.cardDraggedCol].length != 0){
@@ -199,14 +206,14 @@ export class CardMoveService {
       if(this.transferrableToFoundation(lastCardFoundation, this.cardDragged)){
         let cardHolder = wasteCardss.pop();
         foundationCardss[foundationIndex].push(cardHolder); 
-        this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+foundationIndex, "VALID");
+        this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+(foundationIndex+1), "VALID");
         this.isValidMove = true;
         this.checkIfSuccess();
       }
     }
 
     if(this.isValidMove == false){
-      this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+foundationIndex, "INVALID");
+      this.msg.setMessage(1, this.cardDragged.id, "Foundation: "+(foundationIndex+1), "INVALID");
     }
    
   }
